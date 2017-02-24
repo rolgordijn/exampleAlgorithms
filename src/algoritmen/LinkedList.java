@@ -43,7 +43,16 @@ public class LinkedList<T> {
 	 * @return the head of the list
 	 */
 	public T first(){
+		if(head == null) return null;
 		return head.get();
+	}
+	
+	public T last(){
+		Node cursor = head;
+		while(cursor.next()!=null){
+			cursor = cursor.next(); 
+		}
+		return cursor.get();
 	}
 	
 	/**
@@ -70,6 +79,7 @@ public class LinkedList<T> {
 	}
 	
 	private int count(){
+		if(head==null) return 0;
 		int total = 1;
 		while(head.next()!=null){
 			total++;

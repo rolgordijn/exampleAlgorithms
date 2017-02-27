@@ -47,13 +47,34 @@ public class LinkedList<T> {
 		return head.get();
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public T last(){
-		Node cursor = head;
+	/*	Node cursor = head;
 		while(cursor.next()!=null){
 			cursor = cursor.next(); 
 		}
 		return cursor.get();
+	
+	*/
+	return lastRecursive(head).get();
 	}
+	
+	/**
+	 * 
+	 * @param current
+	 * @return
+	 */
+	
+	private Node lastRecursive (Node current){
+		if(current.next() == null) return current; 
+		return lastRecursive(current.next);
+		}
+	
+	
+   
 	
 	/**
 	 * 
@@ -78,13 +99,34 @@ public class LinkedList<T> {
 		return size == 0;
 	}
 	
+	/**
+	 * Finds the element in the list
+	 * @param element to find 
+	 * @return true if present in the list otherwise false
+	 */
+	public boolean find(T element){
+		Node cursor  = head;
+		do{
+			if(cursor.get().equals(element)) return true;
+		} while(cursor.next()!=null);
+		return false;
+	}
+	
 	private int count(){
-		if(head==null) return 0;
+		/*if(head==null) return 0;
 		int total = 1;
 		while(head.next()!=null){
 			total++;
 		}
-		return total;
+		return total;*/
+		
+	  return countRecursive(head,0);
+		
+	}
+	
+	private int countRecursive(Node n, int counter){
+		if(n==null) return counter;
+		return countRecursive(n.next,++counter);
 	}
 	
 	private class Node{
